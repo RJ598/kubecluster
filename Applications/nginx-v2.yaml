@@ -14,9 +14,9 @@ spec:
   project: default
   # Source of the application manifests
   sources:
-    - repoURL: https://github.com/RJ598/kubecluster # Can point to either a Helm chart repo or a git repo.
+    - repoURL: https://github.com/RJ598/kubecluster/Applications/ # Can point to either a Helm chart repo or a git repo.
       targetRevision: main # For Helm, this refers to the chart version.
-      path: Applications/nginx-v2
+      path: nginx-v2
   # Destination cluster and namespace to deploy the application
   destination:
     server: https://kubernetes.default.svc
