@@ -1,4 +1,4 @@
-#{{- with .Values }}
+{{- with .Values }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -62,4 +62,4 @@ spec:
         secret:
           secretName: {{ .secretName }}
       {{- end }}
-#{{- end }}
+{{- end }}
