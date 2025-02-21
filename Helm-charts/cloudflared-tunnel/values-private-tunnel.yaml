@@ -1,0 +1,13 @@
+name: cloudflared-argocd
+replicas: 2
+tunnel: rohan-tunnel
+ingress:
+- hostname: argo.rohanj.info
+  serviceName: argocd-server.argocd.svc.cluster.local
+  servicePort: 80
+
+secretName: cloudflared-cred
+secrets:
+  enabled: false
+serviceAccount:
+  create: false
