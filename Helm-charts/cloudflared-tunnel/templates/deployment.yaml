@@ -1,0 +1,65 @@
+#{{- with .Values }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}-deploy
+  labels:
+    app: {{ .name }}
+spec:
+  replicas: {{ .replicas }}
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+    spec:
+      {{- if .serviceAccount.create }}
+      serviceAccountName: cloudflared-sa
+      {{- end }}
+      containers:
+      - name: {{ .name }}
+        image: cloudflare/cloudflared:{{ $.Chart.AppVersion }}
+        args:
+        - tunnel
+        - --config
+        - /etc/cloudflared/config/config.yaml
+        - run
+        livenessProbe:
+          httpGet:
+            path: /ready
+            port: 2000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        volumeMounts:
+        - name: config
+          mountPath: /etc/cloudflared/config
+          readOnly: true
+        {{- if .secrets.enabled }}
+        - name: {{ .name }}-secrets
+          mountPath: /etc/cloudflared/creds
+          readOnly: true
+        {{ else }}
+        - name: creds
+          mountPath: /etc/cloudflared/creds
+          readOnly: true
+        {{- end }}
+      volumes:
+      - name: config
+        configMap:
+          name: {{ .name }}-config
+      {{- if .secrets.enabled }}
+      - name: {{ .name }}-secrets
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: {{ .name }}-secretproviderclass
+      {{ else }}
+      - name: creds
+        secret:
+          secretName: {{ .secretName }}
+      {{- end }}
+#{{- end }}
