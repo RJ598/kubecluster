@@ -13,7 +13,7 @@ spec:
   # Source of the application manifests
   sources:
     - repoURL: https://github.com/RJ598/kubecluster # Can point to either a Helm chart repo or a git repo.
-      path: helm-charts/nginx-app # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+      path: Helm-charts/nginx-app # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
       targetRevision: main
       helm:
         # valueFiles:
