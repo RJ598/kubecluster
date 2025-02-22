@@ -1,0 +1,146 @@
+app: nginx
+image:
+  name: nginx
+  tag: latest
+
+port: 80
+protocol: TCP
+
+config:
+  volume: nginx-html
+  path: /usr/share/nginx/html
+  data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RJ Secure Server</title>
+        <style>
+            /* General Styles */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Fira Code', monospace;
+            }
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                text-align: center;
+                padding: 20px;
+            }
+
+            /* Container Styling */
+            .container {
+                background: #1e1e2f;
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+                max-width: 800px;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            /* Header Styling */
+            h1 {
+                font-size: 2.5rem;
+                color: #76c7c0;
+                margin-bottom: 20px;
+                text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+            }
+
+            /* Subheading Styling */
+            h2 {
+                font-size: 1.3rem;
+                color: #c5cae9;
+                margin-bottom: 30px;
+                font-weight: 400;
+            }
+
+            /* Highlight Styling */
+            .highlight {
+                color: #ffab40;
+                font-weight: bold;
+            }
+
+            /* Decorative Divider */
+            .divider {
+                height: 2px;
+                background: linear-gradient(to right, #ffab40, #76c7c0);
+                border: none;
+                margin: 30px 0;
+            }
+
+            /* Footer Section */
+            footer {
+                margin-top: 20px;
+                font-size: 1rem;
+                color: #bdbdbd;
+            }
+
+            /* Footer Link */
+            footer a {
+                color: #76c7c0;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            footer a:hover {
+                color: #ffab40;
+                transition: color 0.3s ease;
+            }
+
+            /* Media Queries for Responsiveness */
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 2rem;
+                }
+                h2 {
+                    font-size: 1.1rem;
+                }
+                .container {
+                    padding: 20px;
+                }
+            }
+
+            /* Button Styling */
+            .cta-btn {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #76c7c0;
+                color: #121212;
+                font-size: 1rem;
+                border-radius: 5px;
+                text-decoration: none;
+                margin-top: 20px;
+                font-weight: bold;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            .cta-btn:hover {
+                background-color: #ffab40;
+                transform: translateY(-2px);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to Rohan's Home Lab.</h1>
+            <h2>
+                This custom web page is hosted on an <span class="highlight">Nginx pod</span>
+                in a Kubernetes cluster at my home, and is accessed securely using a
+                <span class="highlight">Cloudflared Tunnel</span> through
+                <span class="highlight">Cloudflare DNS servers</span>.
+            </h2>
+            <hr class="divider">
+            <a href="https://drive.google.com/file/d/1_MHtQCSHTG5gGU6C6wlfWG63YyfrTKmg/view?usp=sharing" target="_blank" class="cta-btn">View my Resume</a>
+            <footer>
+                Built with ❤️ by <a href="https://github.com/" target="_blank">Rohan Joseph</a>
+            </footer>
+        </div>
+    </body>
+    </html>
