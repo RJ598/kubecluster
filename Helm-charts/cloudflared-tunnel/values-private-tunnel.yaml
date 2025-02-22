@@ -10,7 +10,7 @@ ingress:
   servicePort: 80
 - hostname: kiali.rohanj.info
   serviceName: kiali.istio-system.svc.cluster.local
-  servicePort: 9090
+  servicePort: 20001
 
 secretName: cloudflared-cred
 secrets:
