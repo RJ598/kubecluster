@@ -27,7 +27,7 @@ config:
                   font-family: 'Fira Code', monospace;
               }
               body {
-                  background-color: #121212;
+                  background: linear-gradient(135deg, #0d0d0d, #1e1e2f);
                   color: #e0e0e0;
                   display: flex;
                   justify-content: center;
@@ -35,17 +35,30 @@ config:
                   min-height: 100vh;
                   text-align: center;
                   padding: 20px;
+                  animation: fadeIn 1s ease-in-out;
+                  overflow: hidden;
+              }
+
+              /* Background Animation */
+              canvas {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  z-index: -1;
               }
 
               /* Container Styling */
               .container {
-                  background: #1e1e2f;
-                  padding: 40px;
+                  background: rgba(30, 30, 47, 0.95);
+                  padding: 50px;
                   border-radius: 15px;
-                  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-                  max-width: 800px;
-                  width: 100%;
-                  overflow: hidden;
+                  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+                  max-width: 850px;
+                  width: 90%;
+                  backdrop-filter: blur(10px);
+                  animation: slideUp 0.8s ease-in-out;
               }
 
               /* Header Styling */
@@ -53,15 +66,16 @@ config:
                   font-size: 2.5rem;
                   color: #76c7c0;
                   margin-bottom: 20px;
-                  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+                  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
               }
 
               /* Subheading Styling */
               h2 {
                   font-size: 1.3rem;
                   color: #c5cae9;
-                  margin-bottom: 30px;
+                  margin-bottom: 25px;
                   font-weight: 400;
+                  line-height: 1.6;
               }
 
               /* Highlight Styling */
@@ -72,10 +86,11 @@ config:
 
               /* Decorative Divider */
               .divider {
-                  height: 2px;
+                  height: 3px;
                   background: linear-gradient(to right, #ffab40, #76c7c0);
                   border: none;
                   margin: 30px 0;
+                  border-radius: 50px;
               }
 
               /* Footer Section */
@@ -90,58 +105,95 @@ config:
                   color: #76c7c0;
                   text-decoration: none;
                   font-weight: bold;
+                  transition: color 0.3s;
               }
               footer a:hover {
                   color: #ffab40;
-                  transition: color 0.3s ease;
-              }
-
-              /* Media Queries for Responsiveness */
-              @media (max-width: 768px) {
-                  h1 {
-                      font-size: 2rem;
-                  }
-                  h2 {
-                      font-size: 1.1rem;
-                  }
-                  .container {
-                      padding: 20px;
-                  }
               }
 
               /* Button Styling */
               .cta-btn {
                   display: inline-block;
                   padding: 12px 24px;
-                  background-color: #76c7c0;
+                  background: linear-gradient(45deg, #76c7c0, #64b5f6);
                   color: #121212;
                   font-size: 1rem;
-                  border-radius: 5px;
+                  border-radius: 8px;
                   text-decoration: none;
                   margin-top: 20px;
                   font-weight: bold;
-                  transition: background-color 0.3s ease, transform 0.3s ease;
+                  transition: background 0.3s ease, transform 0.3s ease;
+                  box-shadow: 0 5px 15px rgba(118, 199, 192, 0.4);
               }
               .cta-btn:hover {
-                  background-color: #ffab40;
-                  transform: translateY(-2px);
+                  background: linear-gradient(45deg, #ffab40, #ff7043);
+                  transform: translateY(-3px);
+              }
+
+              /* Animations */
+              @keyframes fadeIn {
+                  from { opacity: 0; }
+                  to { opacity: 1; }
+              }
+
+              @keyframes slideUp {
+                  from { transform: translateY(30px); opacity: 0; }
+                  to { transform: translateY(0); opacity: 1; }
+              }
+
+              /* Responsive Design */
+              @media (max-width: 768px) {
+                  h1 { font-size: 2rem; }
+                  h2 { font-size: 1.1rem; }
+                  .container { padding: 30px; }
               }
           </style>
       </head>
       <body>
+          <canvas id="binaryCanvas"></canvas>
           <div class="container">
-              <h1>Welcome to Rohan's Home Lab.</h1>
+              <h1>Welcome to Rohan's Home Lab</h1>
               <h2>
-                  This custom web page is hosted on an <span class="highlight">Nginx pod</span>
-                  in a Kubernetes cluster at my home, and is accessed securely using a
-                  <span class="highlight">Cloudflared Tunnel</span> through
+                  This custom web page is hosted on an <span class="highlight">Nginx pod</span> 
+                  in a Kubernetes cluster at my home, and is accessed securely using a 
+                  <span class="highlight">Cloudflared Tunnel</span> through 
                   <span class="highlight">Cloudflare DNS servers</span>.
               </h2>
               <hr class="divider">
-              <a href="https://drive.google.com/file/d/1_MHtQCSHTG5gGU6C6wlfWG63YyfrTKmg/view?usp=sharing" target="_blank" class="cta-btn">View my Resume</a>
+              <a href="https://drive.google.com/file/d/1_MHtQCSHTG5gGU6C6wlfWG63YyfrTKmg/view?usp=sharing" target="_blank" class="cta-btn">View My Resume</a>
               <footer>
                   Built with ❤️ by <a href="https://github.com/" target="_blank">Rohan Joseph</a>
               </footer>
           </div>
+
+          <script>
+              const canvas = document.getElementById("binaryCanvas");
+              const ctx = canvas.getContext("2d");
+              canvas.width = window.innerWidth;
+              canvas.height = window.innerHeight;
+
+              const binary = "01";
+              const fontSize = 16;
+              const columns = Math.floor(canvas.width / fontSize);
+              const drops = Array(columns).fill(1);
+
+              function draw() {
+                  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+                  ctx.fillRect(0, 0, canvas.width, canvas.height);
+                  ctx.fillStyle = "#76c7c0";
+                  ctx.font = `${fontSize}px monospace`;
+
+                  for (let i = 0; i < drops.length; i++) {
+                      const text = binary[Math.floor(Math.random() * binary.length)];
+                      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                      if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+                          drops[i] = 0;
+                      }
+                      drops[i]++;
+                  }
+              }
+
+              setInterval(draw, 50);
+          </script>
       </body>
       </html>
