@@ -5,6 +5,9 @@ ingress:
 - hostname: argo.rohanj.info
   serviceName: argocd-server.argocd.svc.cluster.local
   servicePort: 80
+- hostname: web.rohanj.info
+  serviceName: nginx-service.argocd.svc.cluster.local
+  servicePort: 80
 
 secretName: cloudflared-cred
 secrets:
