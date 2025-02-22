@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.app }}-config
+data:
+  index.html: |
+{{ .Values.config.data.html | indent 4 }}
+   
