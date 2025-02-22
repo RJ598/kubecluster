@@ -8,6 +8,9 @@ ingress:
 - hostname: web.rohanj.info
   serviceName: nginx-service.default.svc.cluster.local
   servicePort: 80
+- hostname: kiali.rohanj.info
+  serviceName: kiali.istio-system.svc.cluster.local
+  servicePort: 80
 
 secretName: cloudflared-cred
 secrets:
