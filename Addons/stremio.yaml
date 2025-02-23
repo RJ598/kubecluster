@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: stremio-deployment
+
+spec:
+
+  replicas: 1
+
+  selector:
+
+    matchLabels:
+
+      app: stremio
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: stremio
+
+    spec:
+
+      containers:
+
+      - name: stremio
+
+        image: stremio/server:latest  # Use the desired Stremio version here
+
+        ports:
+
+        - containerPort: 3000  
