@@ -12,8 +12,8 @@ ingress:
   serviceName: kiali.istio-system.svc.cluster.local
   servicePort: 20001
 - hostname: stream.rohanj.info
-  serviceName: stremio.default.svc.cluster.local
-  servicePort: 8080
+  serviceName: stremio
+  servicePort: 80
 
 secretName: cloudflared-cred
 secrets:
