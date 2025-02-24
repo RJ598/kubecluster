@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stremio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stremio
+  template:
+    metadata:
+      labels:
+        app: stremio
+    spec:
+      containers:
+        - name: stremio
+          image: linuxserver/stremio
+          ports:
+            - containerPort: 5900  # VNC Port
+            - containerPort: 8080  # Web UI (if enabled)
+          volumeMounts:
+            - mountPath: "/config"
+              name: stremio-storage
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "UTC"
+      volumes:
+        - name: stremio-storage
+          persistentVolumeClaim:
+            claimName: stremio-pvc
