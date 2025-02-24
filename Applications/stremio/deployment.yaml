@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: stremio
-          image: linuxserver/stremio
+          image:  tsaridas/stremio-docker:latest
           ports:
             - containerPort: 5900  # VNC Port
             - containerPort: 8080  # Web UI (if enabled)
