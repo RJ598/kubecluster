@@ -30,7 +30,8 @@ spec:
               value: "UTC"
       volumes:
         - name: stremio-storage
-          persistentVolumeClaim:
-            claimName: stremio-pvc
+          hostPath:
+            path: /mnt/stremio-data
+            type: DirectoryOrCreate
 
             
