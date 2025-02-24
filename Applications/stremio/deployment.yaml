@@ -32,3 +32,5 @@ spec:
         - name: stremio-storage
           persistentVolumeClaim:
             claimName: stremio-pvc
+
+            
