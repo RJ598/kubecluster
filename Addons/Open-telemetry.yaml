@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
     chart: opentelemetry-collector
-    targetRevision: 0.98.0
+    targetRevision: 0.119.0
     helm:
       values: |
         mode: deployment
