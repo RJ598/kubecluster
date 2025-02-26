@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: kube-event-exporter
+    repoURL: https://opsgenie.github.io/kubernetes-event-exporter/
+    chart: kubernetes-event-exporter
     targetRevision: latest
     helm:
       values: |
