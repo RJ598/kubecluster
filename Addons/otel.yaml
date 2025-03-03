@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nr-k8s-otel-collector
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://helm-charts.newrelic.com/nr-otel-collector
+    targetRevision: 0.8.2
+    chart: nr-k8s-otel-collector
+    helm:
+      values: |
+        auth:
+          strategy: anonymous
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: newrelic
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
