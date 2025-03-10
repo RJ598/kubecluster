@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: home-assistant-service
+  name: home-assistant-clusterip
   namespace: home-assistant
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-    - port: 8123
-      targetPort: 8123
-      nodePort: 30123
+    - port: 8123             # Exposed port (internal access)
+      targetPort: 8123        # Container's listening port
+      protocol: TCP
   selector:
-    app: home-assistant
+    app: home-assistant       # Matches the labels in your Deployment
