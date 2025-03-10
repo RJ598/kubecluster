@@ -14,6 +14,9 @@ ingress:
 - hostname: stream.rohanj.info
   serviceName: stremio
   servicePort: 80
+- hostname: ha.rohanj.info
+  serviceName: home-assistant-service.home-assistant.svc.cluster.local
+  servicePort: 8123
 
 secretName: cloudflared-cred
 secrets:
