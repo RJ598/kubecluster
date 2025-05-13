@@ -1,0 +1,22 @@
+# immich-app.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: immich
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/immich-app/immich'
+    targetRevision: main
+    path: deployment/helm
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: immich
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
