@@ -1,4 +1,3 @@
-# immich-app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -7,14 +6,21 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/immich-app/immich'
-    targetRevision: main
-    path: deployment/helm
+    repoURL: https://immich-app.github.io/immich-charts
+    targetRevision: 0.2.4
+    chart: immich
     helm:
-      valueFiles:
-        - values.yaml
+      values: |
+        immich:
+          server:
+            ingress:
+              enabled: false  # No ingress needed
+          persistence:
+            library:
+              storageClass: "your-storage-class"
+              size: 50Gi
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: immich
   syncPolicy:
     automated:
