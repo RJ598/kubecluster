@@ -9,9 +9,8 @@ spec:
     repoURL: https://github.com/immich-app/immich-charts
     targetRevision: HEAD
     path: charts/immich
-  helm:
-    valueFiles:
-      - https://github.com/RJ598/kubecluster/Helm-charts/immich/immich-values.yaml
+    helm:
+        releaseName: Helm-charts/immich
   destination:
     server: https://kubernetes.default.svc
     namespace: default
