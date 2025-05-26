@@ -5,18 +5,23 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/immich-app/immich-charts
-    targetRevision: HEAD
-    path: charts/immich
+sources:
+  - repoURL: https://github.com/immich-app/immich-charts # Can point to either a Helm chart repo or a git repo.
+    targetRevision: HEAD # For Helm, this refers to the chart version.
+    chart: charts/immich
     helm:
       releaseName: immich
       valueFiles:
-      - values.yaml
+      - $values/Helm-charts/immich/immich-values.yaml
+
+  - repoURL:  https://github.com/RJ598/kubecluster
+    targetRevision: main
+    ref: values
 
   destination:
     server: https://kubernetes.default.svc
     namespace: default
+
   syncPolicy:
     automated:
       selfHeal: true
