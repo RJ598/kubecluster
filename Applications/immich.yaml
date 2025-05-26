@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/immich-app/immich-charts
-      targetRevision: HEAD
+      targetRevision: 0.9.3
       chart: immich  # <- Fixed: use just the chart name
       helm:
         releaseName: immich
