@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: immich
         valueFiles:
-          - $values/Helm-charts/immich/immich-values.yaml  # This is from your second repo
+          - $values/Helm-charts/immich/values.yaml  # This is from your second repo
 
     - repoURL: https://github.com/RJ598/kubecluster
       targetRevision: main
