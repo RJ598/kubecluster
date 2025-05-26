@@ -10,7 +10,10 @@ spec:
     targetRevision: HEAD
     path: charts/immich
     helm:
-        releaseName: Helm-charts/immich
+      releaseName: immich
+      valueFiles:
+      - values.yaml
+
   destination:
     server: https://kubernetes.default.svc
     namespace: default
