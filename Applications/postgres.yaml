@@ -19,9 +19,8 @@ spec:
           password: immich
           database: immich
         primary:
-          persistence:
-            enabled: true
-            size: 8Gi
+         persistence:
+           storageClass: local-path
   destination:
     server: https://kubernetes.default.svc
     namespace: default
