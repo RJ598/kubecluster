@@ -3,9 +3,5 @@ immich:
     library:
       enabled: true
       existingClaim: immich-media-pvc
-
-postgresql:
-  enabled: true
-
 redis:
   enabled: true
