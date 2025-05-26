@@ -11,7 +11,7 @@ spec:
     path: charts/immich
   helm:
     valueFiles:
-      - Helm-charts/immich/immich-values.yaml
+      - https://github.com/RJ598/kubecluster/blob/main/Helm-charts/immich/immich-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default
