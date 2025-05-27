@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/RJ598/kubecluster  # change this
     targetRevision: HEAD
-    path: Application/pervolume  # path to your pv manifests
+    path: pervolume  # path to your pv manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: default
