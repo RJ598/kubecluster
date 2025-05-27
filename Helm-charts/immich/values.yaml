@@ -1,8 +1,0 @@
-immich:
-  persistence:
-    library:
-      enabled: true
-      existingClaim: immich-media-pvc
-useDeprecatedPostgresChart: true
-redis:
-  enabled: true
