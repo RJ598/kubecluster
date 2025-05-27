@@ -22,7 +22,7 @@ spec:
           persistence:
             existingClaim: pgvector-pvc
             enabled: true
-            storageClass: ""  # This disables dynamic provisioning
+            storageClass: ""
   destination:
     server: https://kubernetes.default.svc
     namespace: default
