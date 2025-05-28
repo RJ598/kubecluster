@@ -1,9 +1,8 @@
 immich:
-  server:
-    volume:
-      persistentVolumeClaim:
-        enabled: true
-        existingClaim: immich-media-pvc
+  persistence:
+    library:
+      enabled: true
+      existingClaim: immich-media-pvc
 
 postgresql:
   enabled: true
