@@ -1,0 +1,17 @@
+immich:
+  server:
+    volume:
+      persistentVolumeClaim:
+        enabled: true
+        existingClaim: immich-media-pvc
+
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: immichpass
+    username: immich
+    password: immichpass
+    database: immich
+
+redis:
+  enabled: true
