@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: ghcr.io/library/postgres:14
+          image: bitnami/postgresql:14
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
