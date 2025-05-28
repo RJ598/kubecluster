@@ -1,33 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: pgvector
-  namespace: argocd
+  name: postgres
+  namespace: argocd  # Argo CD's namespace
 spec:
   project: default
+
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: postgresql
-    targetRevision: 14.1.2
-    helm:
-      values: |
-        image:
-          repository: tensorchord/pgvecto.rs
-          tag: latest
-        auth:
-          username: postgres
-          password: immich
-          database: immich
-        primary:
-          persistence:
-            existingClaim: pgvector-pvc
-            enabled: true
-            storageClass: ""
+    repoURL: https://github.com/RJ598/kubecluster  # 🔁 Replace with your repo
+    targetRevision: main  # or a tag/branch
+    path: Applications/postgress    # 🔁 Path inside the repo to your YAML files
+
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: default     # or any target namespace for PostgreSQL
+
   syncPolicy:
-    automated:
+    automated:             # Optional: enables auto-sync
       prune: true
       selfHeal: true
     syncOptions:
