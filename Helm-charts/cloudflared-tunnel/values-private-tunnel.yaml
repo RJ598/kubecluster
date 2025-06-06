@@ -17,8 +17,6 @@ ingress:
 - hostname: ha.rohanj.info
   serviceName: home-assistant-service.home-assistant.svc.cluster.local
   servicePort: 8123
-- serviceName: http-status
-  servicePort: 404
 secretName: cloudflared-cred
 secrets:
   enabled: false
