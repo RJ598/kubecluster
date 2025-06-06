@@ -24,3 +24,4 @@ secrets:
   enabled: false
 serviceAccount:
   create: false
+warp: false
