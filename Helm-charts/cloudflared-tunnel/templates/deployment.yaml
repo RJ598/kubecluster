@@ -26,7 +26,6 @@ spec:
         - --config
         - /etc/cloudflared/config/config.yaml
         - --no-autoupdate
-
         - run
         - fbb3c4b9-8142-4688-a5f0-433a8938c890
         livenessProbe:
