@@ -24,7 +24,7 @@ spec:
         fsGroup: 1
       containers:
       - name: {{ .name }}
-        image: cloudflare/cloudflared:{{ $.Chart.AppVersion }}
+        image: busybox
         args:
         - tunnel
         - --config
