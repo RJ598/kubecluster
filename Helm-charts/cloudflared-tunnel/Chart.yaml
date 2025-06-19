@@ -3,4 +3,4 @@ name: cloudflared-tunnel
 description: Helm chart for managing multiple cloudflared deployments
 type: application
 version: 0.1.0
-appVersion: "2025.1.0"
+appVersion: "latest"
