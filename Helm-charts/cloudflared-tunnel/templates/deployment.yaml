@@ -18,6 +18,10 @@ spec:
       {{- if .serviceAccount.create }}
       serviceAccountName: cloudflared-sa
       {{- end }}
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
       - name: {{ .name }}
         image: cloudflare/cloudflared:{{ $.Chart.AppVersion }}
