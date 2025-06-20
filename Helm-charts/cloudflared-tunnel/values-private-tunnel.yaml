@@ -15,8 +15,8 @@ ingress:
   serviceName: home-assistant-service.home-assistant.svc.cluster.local
   servicePort: 8123
 - hostname: zabbix.rohanj.info
-  serviceName: zabbix-zabbix-webservice.observability.svc.cluster.local
-  servicePort: 10053
+  serviceName: zabbix-zabbix-web.observability.svc.cluster.local
+  servicePort: 80
 secretName: cloudflared-cred
 secrets:
   enabled: false
