@@ -9,8 +9,8 @@ spec:
   project: default
   sources:
     - repoURL: https://zabbix-community.github.io/helm-zabbix
-      chart: helm-zabbix
-      targetRevision: 3.2.0
+      chart: zabbix           # correct chart name
+      targetRevision: 3.2.0   # latest chart version
       helm:
         releaseName: zabbix
         values: |
@@ -31,7 +31,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
-      allowEmpty: false
     syncOptions:
       - Validate=false
       - CreateNamespace=true
