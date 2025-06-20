@@ -9,8 +9,8 @@ spec:
   project: default
   sources:
     - repoURL: https://zabbix-community.github.io/helm-zabbix
-      chart: zabbix           # correct chart name
-      targetRevision: 3.2.0   # latest chart version
+      chart: zabbix
+      targetRevision: 4.0.0     # ← updated version
       helm:
         releaseName: zabbix
         values: |
