@@ -1,19 +1,45 @@
-# zabbix-app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: zabbix
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://cetic.github.io/helm-charts
-    targetRevision: 0.4.4
-    chart: zabbix
+  sources:
+    - repoURL: https://zabbix-community.github.io/helm-zabbix
+      chart: helm-zabbix
+      targetRevision: 3.2.0
+      helm:
+        releaseName: zabbix
+        values: |
+          zabbix_image_tag: ubuntu-7.0-latest
+          postgresql:
+            enabled: true
+            auth:
+              postgresPassword: zabbix
+              password: zabbix
+          zabbixServer:
+            dbPassword: zabbix
+          zabbixWeb:
+            dbPassword: zabbix
   destination:
     server: https://kubernetes.default.svc
-    namespace: zabbix
+    namespace: observability
   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
