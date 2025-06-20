@@ -14,8 +14,8 @@ ingress:
 - hostname: ha.rohanj.info
   serviceName: home-assistant-service.home-assistant.svc.cluster.local
   servicePort: 8123
-  - hostname: immich.rohanj.info
-    service: http://192.168.1.13:2283
+- hostname: immich.rohanj.info
+  service: http://192.168.1.13:2283
 secretName: cloudflared-cred
 secrets:
   enabled: false
