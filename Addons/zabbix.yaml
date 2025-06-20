@@ -24,6 +24,8 @@ spec:
             dbPassword: zabbix
           zabbixWeb:
             dbPassword: zabbix
+            tls:
+              enabled: false  # <-- this is for some charts that might try to enable SSL
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
