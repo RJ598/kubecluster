@@ -16,7 +16,7 @@ ingress:
   servicePort: 8123
 - hostname: zabbix.rohanj.info
   serviceName: zabbix-zabbix-web.observability.svc.cluster.local
-  servicePort: 80
+  servicePort: 8080
 secretName: cloudflared-cred
 secrets:
   enabled: false
