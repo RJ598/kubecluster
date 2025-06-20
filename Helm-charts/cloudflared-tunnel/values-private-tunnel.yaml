@@ -4,7 +4,7 @@ tunnel: a845fc46-3423-43b1-a8b0-be7534914156
 ingress:
 - hostname: argo.rohanj.info
   serviceName: argocd-server.argocd.svc.cluster.local
-  servicePort: 80
+  servicePort: 8080
 - hostname: web.rohanj.info
   serviceName: nginx-service.default.svc.cluster.local
   servicePort: 80
