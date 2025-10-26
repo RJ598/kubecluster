@@ -6,7 +6,7 @@ ingress:
   serviceName: argocd-server.argocd.svc.cluster.local
   servicePort: 80
 - hostname: web.rohanj.info
-  serviceName: nginx-service.default.svc.cluster.local
+  serviceName: voice-of-pm.default.svc.cluster.local
   servicePort: 80
 - hostname: stream.rohanj.info
   serviceName: stremio
