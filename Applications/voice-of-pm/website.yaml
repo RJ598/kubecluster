@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/RJ598/voice-of-pm-k8s  # Your Git repo with Kubernetes manifests
+    - repoURL: https://github.com/RJ598/kubecluster  # Your Git repo with Kubernetes manifests
       path: .  # Path to manifests inside the repo
   destination:
     server: https://kubernetes.default.svc
