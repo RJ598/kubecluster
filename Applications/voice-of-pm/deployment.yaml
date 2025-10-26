@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voice-of-pm
+  labels:
+    app: voice-of-pm
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: voice-of-pm
+  template:
+    metadata:
+      labels:
+        app: voice-of-pm
+    spec:
+      containers:
+        - name: voice-of-pm
+          image: rj598/voice-of-pm:latest
+          ports:
+            - containerPort: 80
