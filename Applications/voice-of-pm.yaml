@@ -10,6 +10,7 @@ spec:
   sources:
     - repoURL: https://github.com/RJ598/kubecluster  # Your Git repo with Kubernetes manifests
       path: Applications/voice-of-pm  # Path to manifests inside the repo
+      targetRevision: main
   destination:
     server: https://kubernetes.default.svc
     namespace: default
