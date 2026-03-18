@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: voice-of-pm
-          image: rj598/voice-of-pm:latest
+          image: rj598/voice-of-pm:main
           ports:
             - containerPort: 80
