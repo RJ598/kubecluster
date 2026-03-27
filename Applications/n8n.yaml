@@ -11,7 +11,6 @@ spec:
 
   sources:
     - repoURL: https://github.com/RJ598/kubecluster
-      targetRevision: main
       path: Applications/n8n
 
   destination:
