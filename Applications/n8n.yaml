@@ -12,7 +12,7 @@ spec:
   sources:
     - repoURL: https://github.com/RJ598/kubecluster # Can point to either a Helm chart repo or a git repo.
       targetRevision: main # For Helm, this refers to the chart version.
-      path: Applications/n8n
+      path: Applications/automation
 
   destination:
     server: https://kubernetes.default.svc
