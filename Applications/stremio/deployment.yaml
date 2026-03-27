@@ -33,5 +33,3 @@ spec:
           hostPath:
             path: /mnt/stremio-data
             type: DirectoryOrCreate
-
-            
