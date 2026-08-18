@@ -30,8 +30,6 @@ spec:
         - --config
         - /etc/cloudflared/config/config.yaml
         - run
-        - --token
-        - $(eyJhIjoiNmI3MjVhZTA0ZWFjZjM1MGQ4MzAzMTE5ZDI3ZjZmOGUiLCJ0IjoiYTg0NWZjNDYtMzQyMy00M2IxLWE4YjAtYmU3NTM0OTE0MTU2IiwicyI6Ik9UQXdaalppWWpJdE5HWTROUzAwTkRkaExXSTVaakF0WTJFMllUSTRNamxpTlRjeiJ9
 )
 
         livenessProbe:
