@@ -18,56 +18,45 @@ spec:
       {{- if .serviceAccount.create }}
       serviceAccountName: cloudflared-sa
       {{- end }}
+
       securityContext:
         runAsUser: 1
         runAsGroup: 1
         fsGroup: 1
-      containers:
-      - name: {{ .name }}
-        image: cloudflare/cloudflared:{{ $.Chart.AppVersion }}
-        args:
-        - tunnel
-        - --config
-        - /etc/cloudflared/config/config.yaml
-        - run
-        - --token
-        - $(eyJhIjoiNmI3MjVhZTA0ZWFjZjM1MGQ4MzAzMTE5ZDI3ZjZmOGUiLCJ0IjoiYTg0NWZjNDYtMzQyMy00M2IxLWE4YjAtYmU3NTM0OTE0MTU2IiwicyI6Ik9UQXdaalppWWpJdE5HWTROUzAwTkRkaExXSTVaakF0WTJFMllUSTRNamxpTlRjeiJ9
-)
 
-        livenessProbe:
-          httpGet:
-            path: /ready
-            port: 2000
-          failureThreshold: 1
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        volumeMounts:
-        - name: config
-          mountPath: /etc/cloudflared/config
-          readOnly: true
-        {{- if .secrets.enabled }}
-        - name: {{ .name }}-secrets
-          mountPath: /etc/cloudflared/creds
-          readOnly: true
-        {{ else }}
-        - name: creds
-          mountPath: /etc/cloudflared/creds
-          readOnly: true
-        {{- end }}
+      containers:
+        - name: {{ .name }}
+          image: cloudflare/cloudflared:{{ $.Chart.AppVersion }}
+
+          args:
+            - tunnel
+            - --config
+            - /etc/cloudflared/config/config.yaml
+            - run
+
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: 2000
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cloudflared/config
+              readOnly: true
+
+            - name: creds
+              mountPath: /etc/cloudflared/creds
+              readOnly: true
+
       volumes:
-      - name: config
-        configMap:
-          name: {{ .name }}-config
-      {{- if .secrets.enabled }}
-      - name: {{ .name }}-secrets
-        csi:
-          driver: secrets-store.csi.k8s.io
-          readOnly: true
-          volumeAttributes:
-            secretProviderClass: {{ .name }}-secretproviderclass
-      {{ else }}
-      - name: creds
-        secret:
-          secretName: {{ .secretName }}
-      {{- end }}
+        - name: config
+          configMap:
+            name: {{ .name }}-config
+
+        - name: creds
+          secret:
+            secretName: {{ .secretName }}
 {{- end }}
