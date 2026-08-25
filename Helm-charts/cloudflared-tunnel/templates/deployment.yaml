@@ -27,12 +27,20 @@ spec:
       containers:
         - name: {{ .name }}
           image: cloudflare/cloudflared:{{ $.Chart.AppVersion }}
+          env:
+            - name: TUNNEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tunnel-token
+                  key: token
 
           args:
             - tunnel
             - --config
             - /etc/cloudflared/config/config.yaml
             - run
+            - --token
+            - $(TUNNEL_TOKEN)
 
           livenessProbe:
             httpGet:
@@ -47,16 +55,8 @@ spec:
               mountPath: /etc/cloudflared/config
               readOnly: true
 
-            - name: creds
-              mountPath: /etc/cloudflared/creds
-              readOnly: true
-
       volumes:
         - name: config
           configMap:
             name: {{ .name }}-config
-
-        - name: creds
-          secret:
-            secretName: {{ .secretName }}
 {{- end }}
