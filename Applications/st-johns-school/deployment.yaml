@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: school-website
-          image: rj598/school-website:latest
+          image: rj598/school-website
           imagePullPolicy: IfNotPresent
 
           ports:
