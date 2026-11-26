@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: kinhealth
-          image: rj598/kinhealth
+          image: rj598/kinhealth:latest
           imagePullPolicy: IfNotPresent
 
           ports:
